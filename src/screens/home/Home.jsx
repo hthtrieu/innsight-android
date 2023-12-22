@@ -1,8 +1,29 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, Text, Image } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Image, Button, Touchable } from 'react-native';
 import SearchBox from '../../components/search-box/SearchBox';
-import { Card } from '@rneui/themed';
+import { Card, TouchableHighlight } from '@rneui/themed';
+import { useLayoutEffect } from "react";
+
 const Home = ({ navigation }) => {
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerShown: true,
+            title: "Innsight",
+            headerTintColor: '#3A1568',
+            headerStyle: {
+                height: 110,
+                borderBottomColor: "transparent",
+                backgroundColor: '#D5F0F9',
+                shadowColor: "transparent",
+            },
+            headerTitleAlign: 'center',
+            // headerRight: () => (
+            //     <Text>
+            //         ABC
+            //     </Text>
+            // ),
+        });
+    }, [navigation]);
     return (
         <View style={{ backgroundColor: "#fff", height: "auto" }}>
             <ScrollView>
@@ -56,6 +77,7 @@ const Home = ({ navigation }) => {
                     </View>
                 </View>
             </ScrollView>
+
         </View>
     );
 };
