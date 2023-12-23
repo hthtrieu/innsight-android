@@ -62,7 +62,7 @@ const Profile = () => {
 
                         if (route.name === 'History') {
                             iconName = focused ? 'file-invoice' : 'file-invoice';
-                        } else if (route.name === 'ChangePw') {
+                        } else if (route.name === 'Change password') {
                             iconName = focused ? 'pen' : 'pen';
                         }
 
@@ -73,7 +73,7 @@ const Profile = () => {
                 })}
             >
                 <Tab.Screen name="History" component={History} />
-                <Tab.Screen name="ChangePw" component={ChangePassword} />
+                <Tab.Screen name="Change password" component={ChangePassword} />
             </Tab.Navigator>
         </View>
     );

@@ -16,8 +16,10 @@ const Invoice = () => {
                 fontWeight: 'bold',
             },
             headerTitleAlign: 'center',
+
         });
-    }, []);
+    }, [navigation]);
+
     const { bookingReserved } = useSelector(state => state.Booking)
     return (
         <ScrollView style={styles.bg}>

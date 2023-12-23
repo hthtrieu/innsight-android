@@ -8,6 +8,7 @@ const config = {
     },
 };
 export const bookingApi = async (reservation) => {
+    console.log(reservation)
     const response = await axios.post(`${BASE_URL}/reservation/booking`, JSON.stringify(reservation), config);
     return { Data: response?.data };
 }

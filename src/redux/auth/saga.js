@@ -8,11 +8,14 @@ function* watchSignIn() {
         try {
             const response = yield call(SignIn, data);
             yield put(signin({
-                token: response?.Data?.access_token
+                token: response?.Data?.access_token,
+                id: response?.Data?.id,
+                email: response?.Data?.email,
             }))
             onSuccess && onSuccess()
 
         } catch (error) {
+            console.log(error)
             onError && onError();
         } finally {
         }

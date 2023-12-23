@@ -6,6 +6,7 @@ const config = {
         'Content-Type': 'application/json',
     },
 };
+console.log(BASE_URL)
 export const getHotelById = async (data) => {
     const response = await axios.post(`${BASE_URL}/rooms`, JSON.stringify(data), config);
     return { Data: response?.data };

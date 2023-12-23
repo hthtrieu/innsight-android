@@ -64,13 +64,24 @@ export default function App() {
               component={Result}
               options={({ navigation, route }) => ({
                 headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      navigation.navigate("Profile")
-                    }}
-                  >
-                    <Ionicons name="person-circle-outline" size={40} color="black" />
-                  </Pressable>
+                  <>
+                    <Pressable
+                      onPress={() => {
+                        navigation.navigate("Profile")
+                      }}
+                    >
+                      <Ionicons name="person-circle-outline" size={30} color="black" />
+                    </Pressable>
+                    <Pressable
+                      style={{ marginLeft: 10 }}
+                      onPress={() => {
+                        navigation.navigate("Home")
+                      }}
+                    >
+                      <Ionicons name="home-outline" size={30} color="black" />
+                    </Pressable>
+                  </>
+
                 ),
               })}
             />
@@ -79,13 +90,23 @@ export default function App() {
               component={HotelDetails}
               options={({ navigation, route }) => ({
                 headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      navigation.navigate("Profile")
-                    }}
-                  >
-                    <Ionicons name="person-circle-outline" size={40} color="black" />
-                  </Pressable>
+                  <>
+                    <Pressable
+                      onPress={() => {
+                        navigation.navigate("Profile")
+                      }}
+                    >
+                      <Ionicons name="person-circle-outline" size={30} color="black" />
+                    </Pressable>
+                    <Pressable
+                      style={{ marginLeft: 10 }}
+                      onPress={() => {
+                        navigation.navigate("Home")
+                      }}
+                    >
+                      <Ionicons name="home-outline" size={30} color="black" />
+                    </Pressable>
+                  </>
                 ),
               })}
             />
@@ -94,13 +115,24 @@ export default function App() {
               component={Booking}
               options={({ navigation, route }) => ({
                 headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      navigation.navigate("Profile")
-                    }}
-                  >
-                    <Ionicons name="person-circle-outline" size={40} color="black" />
-                  </Pressable>
+                  <>
+                    <Pressable
+                      onPress={() => {
+                        navigation.navigate("Profile")
+                      }}
+                    >
+                      <Ionicons name="person-circle-outline" size={30} color="black" />
+                    </Pressable>
+                    <Pressable
+                      style={{ marginLeft: 10 }}
+                      onPress={() => {
+                        navigation.navigate("Home")
+                      }}
+                    >
+                      <Ionicons name="home-outline" size={30} color="black" />
+                    </Pressable>
+                  </>
+
                 ),
               })}
             />
@@ -109,13 +141,24 @@ export default function App() {
               component={CheckReservation}
               options={({ navigation, route }) => ({
                 headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      navigation.navigate("Profile")
-                    }}
-                  >
-                    <Ionicons name="person-circle-outline" size={40} color="black" />
-                  </Pressable>
+                  <>
+                    <Pressable
+                      onPress={() => {
+                        navigation.navigate("Profile")
+                      }}
+                    >
+                      <Ionicons name="person-circle-outline" size={30} color="black" />
+                    </Pressable>
+                    <Pressable
+                      style={{ marginLeft: 10 }}
+                      onPress={() => {
+                        navigation.navigate("Home")
+                      }}
+                    >
+                      <Ionicons name="home-outline" size={30} color="black" />
+                    </Pressable>
+                  </>
+
                 ),
               })}
             />
@@ -124,13 +167,24 @@ export default function App() {
               component={Payment}
               options={({ navigation, route }) => ({
                 headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      navigation.navigate("Profile")
-                    }}
-                  >
-                    <Ionicons name="person-circle-outline" size={40} color="black" />
-                  </Pressable>
+                  <>
+                    <Pressable
+                      onPress={() => {
+                        navigation.navigate("Profile")
+                      }}
+                    >
+                      <Ionicons name="person-circle-outline" size={30} color="black" />
+                    </Pressable>
+                    <Pressable
+                      style={{ marginLeft: 10 }}
+                      onPress={() => {
+                        navigation.navigate("Home")
+                      }}
+                    >
+                      <Ionicons name="home-outline" size={30} color="black" />
+                    </Pressable>
+                  </>
+
                 ),
               })}
             />
@@ -139,13 +193,24 @@ export default function App() {
               component={Invoice}
               options={({ navigation, route }) => ({
                 headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      navigation.navigate("Profile")
-                    }}
-                  >
-                    <Ionicons name="person-circle-outline" size={40} color="black" />
-                  </Pressable>
+                  <>
+                    <Pressable
+                      onPress={() => {
+                        navigation.navigate("Profile")
+                      }}
+                    >
+                      <Ionicons name="person-circle-outline" size={30} color="black" />
+                    </Pressable>
+                    <Pressable
+                      style={{ marginLeft: 10 }}
+                      onPress={() => {
+                        navigation.navigate("Home")
+                      }}
+                    >
+                      <Ionicons name="home-outline" size={30} color="black" />
+                    </Pressable>
+                  </>
+
                 ),
               })}
             />
@@ -177,7 +242,7 @@ export default function App() {
           {/* <BottomTab /> */}
           <ModalPortal />
         </NavigationContainer>
-      </Provider>
+      </Provider >
     </>
 
   );

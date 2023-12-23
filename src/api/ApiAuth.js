@@ -8,6 +8,7 @@ const config = {
     },
 };
 export const SignIn = async (data) => {
+    console.log(data)
     const response = await axios.post(`${BASE_URL}/authenticate`, JSON.stringify(data), config);
     if (response.status === 200) {
         return {
