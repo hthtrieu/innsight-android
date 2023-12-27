@@ -51,9 +51,6 @@ const Booking = () => {
                 count: parseInt(item.count),
                 price: item.price
             })),
-            totalPrice: 4000.00,
-            tax: 6000,
-            vat: 222,
             totalPrice: total,
             tax: Constants.tax,
             vat: parseFloat(totalWithTax.toFixed(3)),
