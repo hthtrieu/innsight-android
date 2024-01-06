@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Button, StyleSheet, Touchable, View, Pressable } from 'react-native';
+import { StyleSheet, Pressable } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import initStore from './src/redux/store';
@@ -11,39 +11,20 @@ import Booking from './src/screens/booking/Booking';
 import CheckReservation from './src/screens/check-reservation/CheckReservation';
 import Payment from './src/screens/payment/Payment';
 import Invoice from './src/screens/invoice/Invoice';
-import { useNavigation, useRoute } from "@react-navigation/native";
 import Profile from './src/screens/profile/Profile';
 import { ModalPortal } from 'react-native-modals';
-import { Ionicons, Entypo } from "@expo/vector-icons";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from "@expo/vector-icons";
 import SignIn from './src/screens/sign-in/SignIn';
 import SignUp from './src/screens/sign-up/Signup';
 const store = initStore();
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
-const BottomTab = () => {
-  const navigation = useNavigation();
-  return (
-    <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", padding: 5 }}>
-      <Entypo name="magnifying-glass" size={40} color="black" />
-      <Pressable
-        onPress={() => {
-          navigation.navigate("Profile")
-        }}
-      >
-        <Ionicons name="person-circle-outline" size={40} color="black" />
-      </Pressable>
-    </View>
-  );
-};
 
 export default function App() {
   return (
     <>
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="Home">
             <Stack.Screen
               name="Home"
               component={Home}
@@ -239,7 +220,6 @@ export default function App() {
             />
 
           </Stack.Navigator>
-          {/* <BottomTab /> */}
           <ModalPortal />
         </NavigationContainer>
       </Provider >

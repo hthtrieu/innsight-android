@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, Text, TouchableOpacity, Pressable, Modal, 
 // import { Button } from 'react-native';
 import { Button } from '@rneui/base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Autocomplete from 'react-native-autocomplete-input';
+// import Autocomplete from 'react-native-autocomplete-input';
 import VNProvince from '../../utils/VNProvince';
 import DateRangePicker from '../date-range-picker/DateRangePicker';
 import { BottomModal } from "react-native-modals";
@@ -15,8 +15,8 @@ import { ModalContent } from "react-native-modals";
 import { ListItem } from '@rneui/base';
 import { useDispatch } from 'react-redux';
 import HotelAction from '../../redux/hotel/action';
-import DatePicker from "react-native-date-ranges";
-
+// import DatePicker from "react-native-date-ranges";
+import { setSearchParams } from '../../redux/hotel/slice'
 const SearchBox = ({ navigation }) => {
     const [openDateModal, setOpenDateModal] = useState(false);
     const [openOptionModal, setOpenOptionModal] = useState(false);
@@ -35,21 +35,32 @@ const SearchBox = ({ navigation }) => {
             Alert.alert("Xin hãy chọn đầy đủ thông tin")
         }
         else {
-            dispatch({
-                type: HotelAction.SEARCH_HOTELS_START,
+            // console.log(startDay, endDay)
+            dispatch(setSearchParams({
                 province: provinces,
                 adults: adults,
                 children: children,
                 rooms: rooms,
                 startDay: startDay,
                 endDay: endDay,
-                onSuccess: () => {
-                    navigation.navigate('Result')
-                },
-                onError: () => {
-                    Alert.alert("Không tìm thấy")
-                }
-            })
+            }));
+
+            navigation.navigate('Result')
+            // dispatch({
+            //     type: HotelAction.SEARCH_HOTELS_START,
+            //     province: provinces,
+            //     adults: adults,
+            //     children: children,
+            //     rooms: rooms,
+            //     startDay: startDay,
+            //     endDay: endDay,
+            //     onSuccess: () => {
+            //         navigation.navigate('Result')
+            //     },
+            //     onError: () => {
+            //         Alert.alert("Không tìm thấy")
+            //     }
+            // })
         }
     };
     return (
@@ -74,40 +85,7 @@ const SearchBox = ({ navigation }) => {
                         editable={false}
                         placeholder={`${startDay || "Check-in"} -  ${endDay || "Check-out"}`}
                     />
-                    {/* <DatePicker
-                        style={{
-                            width: 350,
-                            height: 30,
-                            borderRadius: 0,
-                            borderWidth: 0,
-                            borderColor: "transparent",
-                        }}
-                        customStyles={{
-                            placeholderText: {
-                                fontSize: 15,
-                                flexDirection: "row",
-                                alignItems: "center",
-                                marginRight: "auto",
-                            },
-                            headerStyle: {
-                                backgroundColor: "#003580",
-                            },
-                            contentText: {
-                                fontSize: 15,
-                                flexDirection: "row",
-                                alignItems: "center",
-                                marginRight: "auto",
-                            },
-                        }}
-                        selectedBgColor="#0047AB"
-                        // customButton={(onConfirm) => customButton(onConfirm)}
-                        onConfirm={(startDate, endDate) =>
-                            setSelectedDates(startDate, endDate)
-                        }
-                        allowFontScaling={false}
-                        placeholder={"Select Your Dates"}
-                        mode={"range"}
-                    /> */}
+
                 </Pressable>
 
             </View>
@@ -140,7 +118,7 @@ const SearchBox = ({ navigation }) => {
                                 <ModalButton
                                     text="Apply"
                                     style={{
-                                        marginBottom: 20,
+                                        marginBottom: 0,
                                         color: "white",
                                         backgroundColor: "#003580",
                                     }}
@@ -153,7 +131,7 @@ const SearchBox = ({ navigation }) => {
                         visible={openDateModal}
                         onTouchOutside={() => setOpenDateModal(!openDateModal)}
                     >
-                        <ModalContent style={{ width: "100%", height: 310 }}>
+                        <ModalContent style={{ width: "100%", height: 350 }}>
                             <DateRangePicker handleSave={() => setOpenDateModal(openDateModal)} onEndDay={setEndDay} onStartDay={setStartDay} />
 
                         </ModalContent>
@@ -172,7 +150,7 @@ const SearchBox = ({ navigation }) => {
                                     <ModalButton
                                         text="Apply"
                                         style={{
-                                            marginBottom: 20,
+                                            marginBottom: 0,
                                             color: "white",
                                             backgroundColor: "#003580",
                                         }}
@@ -188,13 +166,13 @@ const SearchBox = ({ navigation }) => {
                             <ModalContent style={{ width: "100%", height: 310 }}>
                                 <ScrollView>
                                     {VNProvince.map((p, idx) => (
-                                        <Pressable key={idx} onPress={() => { setProvinces(p.name) }}>
+                                        <TouchableOpacity key={idx} onPress={() => { setProvinces(p.name) }}>
                                             <ListItem >
                                                 <ListItem.Content>
                                                     <Text> {p.name}</Text>
                                                 </ListItem.Content>
                                             </ListItem>
-                                        </Pressable>
+                                        </TouchableOpacity>
 
                                     ))}
                                 </ScrollView>
@@ -215,7 +193,7 @@ const SearchBox = ({ navigation }) => {
                                     <ModalButton
                                         text="Apply"
                                         style={{
-                                            marginBottom: 20,
+                                            marginBottom: 0,
                                             color: "white",
                                             backgroundColor: "#003580",
                                         }}

@@ -42,6 +42,7 @@ const SignUp = () => {
                 inputContainerStyle={styles.inputStyle}
                 onChangeText={(text) => setpassword(text)}
                 disabled={false}
+                secureTextEntry={true}
             />
             <Button
                 onPress={(e) => {

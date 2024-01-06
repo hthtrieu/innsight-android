@@ -33,9 +33,12 @@ const bookingSlice = createSlice({
         invoice: (state, { payload }) => {
             // state.invoice = payload
         },
+        cancel: (state, { payload }) => {
+            state.cancel = payload
+        },
     },
 },)
 
-export const { booking, addRoomToCart, setCheckInOut, saveReservation, pay, invoice } = bookingSlice.actions
+export const { booking, addRoomToCart, setCheckInOut, saveReservation, pay, invoice, cancel } = bookingSlice.actions
 
 export default bookingSlice.reducer

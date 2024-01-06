@@ -4,8 +4,8 @@ import { BottomModal } from "react-native-modals";
 import { ModalFooter } from "react-native-modals";
 import { ModalButton } from "react-native-modals";
 import { ModalTitle } from "react-native-modals";
-import { SlideAnimation } from "react-native-modals";
-import VNProvince from '../../utils/VNProvince';
+// import { SlideAnimation } from "react-native-modals";
+// import VNProvince from '../../utils/VNProvince';
 import { ModalContent } from "react-native-modals";
 import { useState } from 'react';
 const ProvinceSelect = () => {
@@ -20,7 +20,7 @@ const ProvinceSelect = () => {
                     <ModalButton
                         text="Apply"
                         style={{
-                            marginBottom: 20,
+                            marginBottom: 0,
                             color: "white",
                             backgroundColor: "#003580",
                         }}

@@ -33,14 +33,15 @@ const ChangePassword = () => {
         }
     }
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Input
                 label="Mật khẩu hiện tại"
                 labelStyle={styles.labelStyle}
                 inputContainerStyle={styles.inputStyle}
                 disabled={false}
                 onChangeText={(text) => setCurrentPw(text)}
-                type="text"
+                type={"password"}
+                secureTextEntry={true}
             />
             <Input
                 label="Nhập mật khẩu mới"
@@ -49,6 +50,7 @@ const ChangePassword = () => {
                 inputContainerStyle={styles.inputStyle}
                 onChangeText={(text) => setNewPw(text)}
                 disabled={false}
+                secureTextEntry={true}
             />
             <Input
                 label="Xác nhận lại mật khẩu"
@@ -56,7 +58,8 @@ const ChangePassword = () => {
                 inputContainerStyle={styles.inputStyle}
                 disabled={false}
                 onChangeText={(text) => setConfirmPw(text)}
-                type="text"
+                type={"password"}
+                secureTextEntry={true}
             />
             <Button
                 onPress={(e) => {
@@ -64,7 +67,7 @@ const ChangePassword = () => {
                     handleSubmit();
                 }}
                 title={"Gửi"}></Button>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        // justifyContent: "center",
         alignContent: "center",
         height: "100%",
         padding: 20

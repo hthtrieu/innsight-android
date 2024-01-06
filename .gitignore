@@ -36,3 +36,4 @@ yarn-error.*
 
 #deverlop
 package-lock.json/
+my-upload-key.keystore

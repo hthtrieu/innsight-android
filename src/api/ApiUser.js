@@ -8,7 +8,6 @@ const config = {
 };
 
 export const changePassword = async ({ data, token }) => {
-    console.log('data: ', data, "token: ", token)
     try {
         const response = await axios.put(
             `${BASE_URL}/user/changePassword`,
@@ -29,12 +28,15 @@ export const changePassword = async ({ data, token }) => {
 
 
 
-export const getHistoryById = async (requestData) => {
-    console.log("api: ", requestData)
-    const response = await axios.post(
+export const getHistoryById = async (token) => {
+    const response = await axios.get(
         `${BASE_URL}/reservation/history`,
-        JSON.stringify({ requestData }),
-        config
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        }
     );
     return { Data: response?.data };
 }

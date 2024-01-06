@@ -8,15 +8,16 @@ const ReservationInfo = () => {
     const { searchParams, cart } = useSelector(state => state.Hotel)
     return (
         <View style={[styles.card, styles.elevation]}>
-            <View style={{ ...styles.flex, justifyContent: "space-between" }}>
-                <View style={{ width: "20%", height: "100%", }}>
+            <View style={{ ...styles.flex, justifyContent: "center", marginBottom: 10, }}>
+                <View style={{ width: "100%", height: 200, margin: "auto" }}>
                     <Image
                         source={{ uri: Array.isArray(cart?.hotel?.hotelImages) ? cart?.hotel?.hotelImages[0] : "" }}
                         containerStyle={styles.image}
                     />
                 </View>
-
-                <View style={{ width: "70%", height: "100%", }}>
+            </View>
+            <View style={{ ...styles.flex, justifyContent: "center" }}>
+                <View style={{ width: "100%", height: "100%", }}>
                     <View style={styles.flex}>
                         <FontAwesome5 name="hotel" size={22} />
                         <Text style={{ fontSize: 22, marginLeft: 10, fontWeight: "700" }}>
@@ -36,6 +37,7 @@ const ReservationInfo = () => {
                     </View>
                 </View>
             </View>
+
             {cart?.rooms?.map((room, idx) => (
                 <View style={{ marginTop: 10 }} key={idx}>
                     <Text style={{ fontSize: 18, fontWeight: "700" }}>
@@ -60,7 +62,8 @@ export default ReservationInfo
 const styles = StyleSheet.create({
     flex: {
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        flexWrap: "wrap"
     },
     heading: {
         fontSize: 18,
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
         shadowColor: 'rgba(0, 0, 0, 1);',
     },
     image: {
-        aspectRatio: 1,
+        // aspectRatio: 1,
         width: '100%',
         flex: 1,
     },

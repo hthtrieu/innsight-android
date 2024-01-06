@@ -1,9 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, Text, Image, Button, Touchable } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Image, Touchable, Pressable, Button, TouchableOpacity } from 'react-native';
 import SearchBox from '../../components/search-box/SearchBox';
 import { Card, TouchableHighlight } from '@rneui/themed';
 import { useLayoutEffect } from "react";
-
+import { useDispatch } from 'react-redux';
+import HotelAction from '../../redux/hotel/action';
+import { Alert } from 'react-native';
+import moment from 'moment';
+import { setSearchParams } from '../../redux/hotel/slice'
 const Home = ({ navigation }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -24,61 +28,70 @@ const Home = ({ navigation }) => {
             // ),
         });
     }, [navigation]);
+    const dispatch = useDispatch();
+    const handleClick = (text) => {
+        console.log(text)
+        dispatch(setSearchParams({
+            province: text,
+            adults: 2,
+            children: 0,
+            rooms: 1,
+            startDay: moment().format('YYYY-MM-DD'),
+            endDay: moment().add(1, 'days').format('YYYY-MM-DD'),
+        }));
+
+        navigation.navigate('Result')
+        // dispatch({
+        //     type: HotelAction.SEARCH_HOTELS_START,
+        //     province: text,
+        //     adults: 2,
+        //     children: 0,
+        //     rooms: 1,
+        //     startDay: moment().format('YYYY-MM-DD'),
+        //     endDay: moment().add(1, 'days').format('YYYY-MM-DD'),
+        //     onSuccess: () => {
+        //         navigation.navigate('Result')
+        //     },
+        //     onError: () => {
+        //         Alert.alert("Không tìm thấy")
+        //     }
+        // })
+    }
     return (
         <View style={{ backgroundColor: "#fff", height: "auto" }}>
             <ScrollView>
                 <SearchBox navigation={navigation} />
                 <View style={styles.container}>
                     <Text style={styles.title}>Điểm đến đang thịnh hành</Text>
-                    <View>
-                        <View style={styles.tab}>
-                            <Text style={styles.tabText}>Đà Nẵng</Text>
-                            <Image style={{ width: '100%', height: 150, borderRadius: 8 }} source={require('../../assets/images/DaNang.png')} />
-                        </View>
-                        <View style={styles.tab}>
-                            <Text style={styles.tabText}>Hồ Chí Minh</Text>
-                            <Image style={{ width: '100%', height: 150, borderRadius: 8 }} source={require('../../assets/images/HoChiMinh.png')} />
-                        </View>
-                        <View style={styles.tab}>
-                            <Text style={styles.tabText}>Huế</Text>
-                            <Image style={{ width: '100%', height: 150, borderRadius: 8 }} source={require('../../assets/images/Hue.png')} />
-                        </View>
-                    </View>
+                    <Pressable
+                        style={{ ...styles.tab }}
+                        onPress={() => handleClick("Thành phố Đà Nẵng")}
+                    >
+                        <Text style={styles.tabText}>Đà Nẵng</Text>
+                        <Image
+                            style={{ width: '100%', height: 150, borderRadius: 8 }} source={require('../../assets/images/DaNang.jpeg')} />
+                    </Pressable>
+
+                    <Pressable
+                        style={styles.tab}
+                        onPress={() => handleClick("Thành phố Hồ Chí Minh")}
+                    >
+                        <Text style={styles.tabText}>Hồ Chí Minh</Text>
+                        <Image style={{ width: '100%', height: 150, borderRadius: 8 }} source={require('../../assets/images/HoChiMinh.jpeg')} />
+                    </Pressable>
+
+                    <Pressable
+                        style={styles.tab}
+                        onPress={() => handleClick("Tỉnh Thừa Thiên Huế")}
+                    >
+                        <Text style={styles.tabText}>Huế</Text>
+                        <Image style={{ width: '100%', height: 150, borderRadius: 8 }} source={require('../../assets/images/Hue.jpeg')} />
+                    </Pressable>
+
                 </View>
-                <View style={styles.container}>
-                    <Text style={styles.title}>Top các khách sạn được yêu thích nhất</Text>
-                    <View style={styles.cardList}>
+            </ScrollView >
 
-                        <View style={styles.card}>
-                            <Card.Image
-                                style={{ padding: 0, borderRadius: 8, height: 200, }}
-                                source={require('../../assets/images/Hotel.png')}
-
-                            />
-                            <Text style={{ ...styles.title, textAlign: "center", fontSize: 16 }}>
-                                Taian Hotel & Apartment
-                            </Text>
-                            <Text style={{ marginBottom: 10, textAlign: "center", fontSize: 12 }}>
-                                Bãi biển Mỹ Khê, Đà Nẵng
-                            </Text>
-                        </View>
-                        <View style={styles.card}>
-                            <Card.Image
-                                style={{ padding: 0, borderRadius: 8, height: 200, }}
-                                source={require('../../assets/images/Hotel.png')}
-                            />
-                            <Text style={{ ...styles.title, textAlign: "center", fontSize: 16 }}>
-                                Taian Hotel & Apartment
-                            </Text>
-                            <Text style={{ marginBottom: 10, textAlign: "center", fontSize: 12 }}>
-                                Bãi biển Mỹ Khê, Đà Nẵng
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-            </ScrollView>
-
-        </View>
+        </View >
     );
 };
 

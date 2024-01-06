@@ -22,7 +22,7 @@ function* watchSearch() {
 
 
         try {
-            yield put(setSearchParams(data))
+            // yield put(setSearchParams(data))
             const response = yield call(searchHotels, data);
             yield put(result(response?.Data))
             onSuccess && onSuccess();

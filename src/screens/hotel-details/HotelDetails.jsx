@@ -3,17 +3,9 @@ import { ModalFooter } from "react-native-modals";
 // import { SlideAnimation } from "react-native-modals";
 import { ModalContent } from "react-native-modals";
 import { ModalTitle } from "react-native-modals";
-
-// import MockHotelData from '../../redux/hotel/mock-data/HotelDetails'
-import { Pressable, ScrollView, StyleSheet, Text, View, Image, TextInput } from "react-native";
-import React, { useLayoutEffect, useState, useEffect } from "react";
+import { Pressable, ScrollView, StyleSheet, Text, View, Image, TextInput, FlatList, Animated } from "react-native";
+import React, { useLayoutEffect, useState, useEffect, useRef } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-// import { Octicons } from "@expo/vector-icons";
-// import { Ionicons } from "@expo/vector-icons";
-// import { FontAwesome5 } from "@expo/vector-icons";
-// import { FontAwesome } from '@expo/vector-icons';
-// import { Entypo } from "@expo/vector-icons";
-// import PropertyCard from "../../components/property-card/PropertyCard";
 import Room from "../../components/room/Room";
 import { Button } from "@rneui/base";
 import { useDispatch, useSelector } from "react-redux";
@@ -69,20 +61,25 @@ const HotelDetails = ({ route }) => {
         });
     }, [hotel]);
 
-
-    // useEffect(() => {
-    //     if (cart?.rooms?.length) {
-    //         const total = cart.rooms.reduce((acc, room) => (
-    //             acc + (room?.price * parseInt(room?.count || 0, 10))
-    //         ), 0);
-    //         setTotalPrice(total)
-    //     }
-    // }, [cart]);
     const handleGotoBooking = () => {
         if (totalPrice) {
             navigation.navigate('Booking')
         }
     }
+    const slidesRef = useRef(null);
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const scrollX = useRef(new Animated.Value(0)).current
+    const viewableItemsChanged = useRef(({ viewableItems }) => {
+        setCurrentIndex(viewableItems[0])
+    }).current
+    const renderItem = (image) => {
+        return (
+            <Image
+                style={{ ...styles.image, minWidth: 300, width: 400, height: 200, objectFit: "cover", padding: 10 }}
+                source={{ uri: image?.item || image || "" }} />
+        )
+    }
+
     return (
         <>
             <ScrollView style={{ backgroundColor: "white", padding: 10 }}>
@@ -96,39 +93,26 @@ const HotelDetails = ({ route }) => {
                         backgroundColor: "white",
                     }}
                 >
-                    {/* <Pressable
-                        onPress={() => setModalVisibile(!modalVisibile)}
-                        style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                        <Octicons name="arrow-switch" size={22} color="gray" />
-                        <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
-                            Sort
-                        </Text>
-                    </Pressable> */}
-
-                    {/* <Pressable style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Ionicons name="filter" size={22} color="gray" />
-                        <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
-                            Price
-                        </Text>
-                    </Pressable>
-
-                    <Pressable onPress={() => navigation.navigate("Map", {
-                        searchResults: searchPlaces,
-                    })} style={{ flexDirection: "row", alignItems: "center" }}>
-                        <FontAwesome5 name="map-marker-alt" size={22} color="gray" />
-                        <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
-                            Map
-                        </Text>
-                    </Pressable> */}
                 </Pressable>
 
                 <ScrollView >
                     {/* hotel images */}
-                    <View style={styles.section}>
-                        {hotel?.hotelImages?.map((image, idx) => (
-                            <Image key={idx} />
-                        ))}
+                    <View style={{ ...styles.section, marginTop: 0 }}>
+
+                        <FlatList
+                            data={hotel?.hotelImages}
+                            renderItem={renderItem}
+                            horizontal={true}
+                            scrollEnabled={true}
+                            showsHorizontalScrollIndicator={true}
+                            keyExtractor={(item) => item?.item}
+                            onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+                                useNativeDriver: false
+                            })}
+                            scrollEventThrottle={300}
+                            ref={slidesRef}
+                        />
+
                     </View>
                     {/* hotel description */}
                     <View style={styles.section}>
@@ -193,7 +177,7 @@ const HotelDetails = ({ route }) => {
             </ScrollView>
             <View style={{ ...styles.flex, padding: 10, backgroundColor: "#FFF" }}>
                 <TextInput style={{ color: "#E65503", fontSize: 18, fontWeight: "700" }}>
-                    {`${totalPrice} VND`}
+                    {`${totalPrice.toLocaleString('vi-VN')} VND`}
                 </TextInput>
                 <Button
                     titleStyle={
@@ -239,5 +223,12 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 20,
         fontWeight: '700',
-    }
+    },
+    image: {
+        // aspectRatio: 1,
+        width: "100%",
+        height: 200,
+        flex: 1,
+        objectFit: "cover"
+    },
 })

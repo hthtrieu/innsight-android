@@ -12,7 +12,7 @@ const ReservationPrice = () => {
                 acc + (room?.price * parseInt(room?.count || 0, 10))
             ), 0);
             const totalWithTax = total + total * Const.tax / 100;
-            setTotalPrice(totalWithTax.toFixed(3))
+            setTotalPrice(totalWithTax.toLocaleString('vi-VN'))
         }
     }, [cart]);
     return (
@@ -28,7 +28,7 @@ const ReservationPrice = () => {
             {cart.rooms?.map((room, idx) => (
                 <View key={idx} style={styles.flex}>
                     <Text>{`(${room?.count})x ${room?.roomName}`}</Text>
-                    <Text>{`${room?.price} VND`}</Text>
+                    <Text>{`${room?.price.toLocaleString('vi-VN')} VND`}</Text>
                 </View>
             ))}
             <View style={styles.flex}>

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { View, Button, StyleSheet, ScrollView } from 'react-native';
 import { CalendarList } from 'react-native-calendars';
 import moment from 'moment';
 
@@ -58,11 +58,12 @@ const DateRangePicker = ({ handleCancel, handleSave, onStartDay, onEndDay }) => 
                 current={initialDate}
                 minDate={initialDate}
                 onDayPress={onDayPress}
-                calendarHeight={390}
+                calendarHeight={"100%"}
                 horizontal={true}
-                hideArrows={true}
+                hideArrows={false}
                 pagingEnabled={true}
                 markedDates={marked}
+                style={{ marginLeft: -15 }}
             />
             <Button style={styles.button} title="Save" onPress={handleSave} />
         </View>

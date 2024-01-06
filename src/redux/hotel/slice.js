@@ -44,11 +44,11 @@ const hotelSlice = createSlice({
         setSearchParams: (state, { payload }) => {
             state.searchParams = {
                 province: payload?.province,
-                checkinDay: payload?.checkinDay,
-                checkoutDay: payload?.checkoutDay,
-                count: payload?.count,
-                adultCount: payload?.adultCount,
-                childrenCount: payload?.childrenCount,
+                checkinDay: payload?.checkinDay || payload?.startDay,
+                checkoutDay: payload?.checkoutDay || payload?.endDay,
+                count: payload?.count || payload?.rooms,
+                adultCount: payload?.adultCount || payload?.adults,
+                childrenCount: payload?.childrenCount || payload?.children,
                 rate: payload?.rate,
                 fromPrice: payload?.fromPrice,
                 toPrice: payload?.toPrice,

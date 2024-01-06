@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "innsight-mobile",
-    "slug": "innsight-mobile",
+    "name": "innsightmobile",
+    "slug": "innsightmobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,14 +17,11 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.hthtrieu123.innsightmobile"
     }
   }
 }

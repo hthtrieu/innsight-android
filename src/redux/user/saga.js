@@ -71,9 +71,9 @@ function* watchUpdateProfile() {
 
 function* watchGetHistoryReservation() {
     yield takeEvery(actions.GET_HISTORY_RESERVATIONS, function* (payload) {
-        const { requestData, onSuccess, onError } = payload
+        const { requestData, onSuccess, onError, token } = payload
         try {
-            const response = yield call(getHistoryById, requestData);
+            const response = yield call(getHistoryById, token);
             console.log(response)
 
             if (response?.Data) {
