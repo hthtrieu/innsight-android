@@ -1,6 +1,20 @@
-﻿# InnSight-Mobile
-# 👉 InnSight Web: <a href='https://github.com/haitrieu123580/InnSight-Client.git'>InnSight-Booking App</a>
-# 👉 BackEnd: <a href='https://github.com/NhatChu-2002/Hotel-Booking-Backend.git'>Web Api</a>
+## Client:
+
+### Front-end: <a href="https://github.com/hthtrieu/hotel-booking-web">👉 Github link</a>
+
+### Back-end: <a href="https://github.com/hthtrieu/hotel-booking-server">👉 Github link</a>
+
+### Android App: <a href="https://github.com/hthtrieu/innsight-android">👉 Github link</a>
+
+### <a>Video Demo</a>
+
+## Host & Admin Web:
+
+### Front-end: <a href="https://github.com/hthtrieu/innsight-web"> 👉 Github link</a>
+
+### Back-end: <a href="https://github.com/NhatChu-2002/Hotel-Booking-Backend.git">👉 Github link
+
+### <a>Video Demo</a>
 
 ﻿# How to build
 1. Create Android folder using expo: ```npx expo prebuild -p android ```
